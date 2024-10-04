@@ -265,7 +265,7 @@ body {
     /* Display the hamburger menu icon */
     .menu-icon {
         display: flex;
-    }
+    } 
 
     /* Display the menu when the icon is clicked (with JS) */
     #menu-list.active {
