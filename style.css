@@ -199,38 +199,44 @@ body {
 .estimate {
     padding: 4rem 0;
     text-align: center;
+    background-color: rgba(242, 242, 242, 0.8); /* Semi-transparent background */
+    backdrop-filter: blur(20%); /* Blur effect for background */
 }
 
 .estimate h2 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-family: 'Poppins', sans-serif;
 }
 
+.estimate p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Estimate Thumbnails */
 .estimate-grid {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 2rem;
-    flex-wrap: wrap; /* Ensure responsiveness */
 }
 
 .estimate-item {
-    flex: 1 1 30%; /* Grow and shrink to fit, but maintain a minimum width */
-    max-width: 300px; /* Optional: Set a max width */
+    flex: 1; /* Allow thumbnails to grow equally */
+    max-width: 200px; /* Set a maximum width for the thumbnails */
 }
 
 .thumbnail {
     position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: pointer;
+    overflow: hidden; /* Hide overflow */
+    border-radius: 10px; /* Rounded corners */
+    transition: opacity 0.3s ease; /* Transition for dimming effect */
 }
 
 .thumbnail img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: filter 0.3s ease;
+    height: 100%;
+    object-fit: cover; /* Ensure images cover the thumbnail area */
 }
 
 .thumbnail-text {
@@ -240,73 +246,11 @@ body {
     transform: translate(-50%, -50%);
     color: white;
     font-weight: bold;
-    font-size: 2rem;
-    text-shadow: 1px 1px 2px black; /* Black shadow */
+    text-shadow: 1px 1px 2px black; /* Black shadow for text */
 }
 
-.estimate-button {
-    display: block; /* Make the link a block element */
-}
-
-.estimate-button:hover .thumbnail img {
-    filter: brightness(0.7); /* Dims the image on hover */
-}
-
-/* Contact Section */
-.contact {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-.contact h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-family: 'Poppins', sans-serif;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #f7b32b;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #ffc04c;
-}
-
-/* Footer Section */
-.footer {
-    background-color: #232323;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
+.estimate-button:hover .thumbnail {
+    opacity: 0.7; /* Dim thumbnail on hover */
 }
 
 /* Mobile Styles */
@@ -325,8 +269,7 @@ button:hover {
         gap: 1rem;
     }
 
-    .cta,
-    .secondary-cta {
+    .cta, .secondary-cta {
         width: 100%; /* Make buttons full-width on mobile */
         padding: 0.75rem;
     }
@@ -340,30 +283,13 @@ button:hover {
         margin: 0.5rem 0; /* Adjust navigation margins */
     }
 
-    /* Estimate section adjustments */
+    /* Adjust estimate thumbnails for mobile */
     .estimate-grid {
-        flex-direction: column; /* Stack thumbnails vertically */
-        align-items: center; /* Center align items */
+        flex-direction: column; /* Stack thumbnails vertically on mobile */
     }
 
     .estimate-item {
-        max-width: none; /* Remove max width for stacking */
-    }
-
-    .thumbnail-text {
-        font-size: 1.5rem; /* Reduce text size on mobile */
-    }
-
-    /* Adjust menu items for mobile */
-    #menu-list li {
-        margin: 1rem 0;
-        text-align: center;
-    }
-
-    #menu-list li a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
+        max-width: 100%; /* Make thumbnails full width on mobile */
     }
 }
 
@@ -397,18 +323,31 @@ button:hover {
         flex-direction: column;
         position: absolute;
         top: 70px; /* Just below the header */
-        left: 0;
-        right: 0;
         background-color: #232323;
+        width: 100%;
+        left: 0;
         padding: 1rem;
-        border-radius: 5px;
     }
 
-    #menu-icon.active + #menu-list {
-        display: flex; /* Show the menu when active */
+    /* Display the hamburger menu icon */
+    .menu-icon {
+        display: flex;
+    } 
+
+    /* Display the menu when the icon is clicked (with JS) */
+    #menu-list.active {
+        display: flex;
     }
 
-    #menu-icon {
-        display: flex; /* Show the hamburger icon on mobile */
+    /* Adjust menu items for mobile */
+    #menu-list li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    #menu-list li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
     }
 }
