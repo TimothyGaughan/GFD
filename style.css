@@ -116,23 +116,33 @@ body {
 
 .thumbnails {
     display: flex;
-    justify-content: center;  /* Centers the thumbnails */
-    gap: 1rem;
-    margin-top: 20px;         /* Adds space between the header and thumbnails */
+    flex-wrap: wrap;            /* Allow items to wrap in mobile view */
+    justify-content: center;    /* Center the thumbnails */
+    gap: 1rem;                 /* Space between thumbnails */
+    margin-top: 20px;          /* Space between the header and thumbnails */
 }
 
 .thumbnail {
     position: relative;
-    width: 200px;             /* Set width for thumbnails */
-    height: 200px;            /* Set height for thumbnails */
+    width: 200px;              /* Set width for thumbnails */
+    height: 200px;             /* Set height for thumbnails */
     background-color: rgba(255, 255, 255, 0.3); /* Light background for visibility */
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
-    cursor: pointer;          /* Makes the thumbnail clickable */
+    cursor: pointer;           /* Makes the thumbnail clickable */
 }
+
+/* Add this media query to ensure thumbnails are responsive */
+@media (max-width: 768px) { /* Adjust the max-width value as needed */
+    .thumbnail {
+        width: 150px;         /* Adjust width for mobile view */
+        height: 150px;        /* Adjust height for mobile view */
+    }
+}
+
 
 .thumbnail span {
     color: white;             /* Text color for the thumbnail */
