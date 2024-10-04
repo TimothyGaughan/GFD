@@ -53,62 +53,98 @@ body {
 
 /* Home Section */
 .home {
-    background: url('IMG_82788.png') no-repeat center center/cover;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    filter: blur(20%);
+    position: relative; /* Necessary for positioning the background */
+    overflow: hidden; /* Prevents overflow from the pseudo-element */
+    min-height: 80vh; /* Set a minimum height to ensure the section takes up the full viewport height */
+    padding: 2rem 0; /* Add padding to the top and bottom */
 }
 
-.home h2 {
+
+.bg-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('bg-img.png') no-repeat center center; /* Background image */
+    background-size: cover; /* Ensures the image covers the entire area */
+    filter: blur(4px); /* Apply blur effect */
+    -webkit-filter: blur(4px); /* For Safari */
+    z-index: 0; /* Send this behind the content */
+    height: 100%; /* Ensure it covers the entire section */
+}
+
+.home > .container {
+    position: relative; /* Ensures the content is above the blurred background */
+    z-index: 1; /* Bring content above the blurred background */
+}
+.estimate-header {
+    font-size: 3rem;            /* Increased font size */
+    margin-bottom: 1.5rem;      /* Spacing below the header */
+    font-family: 'Poppins', sans-serif; /* Using Poppins font */
+    color: #fff;                /* Ensuring text is white */
+    text-align: center;         /* Centering the header */
+}
+
+.estimate-form h2 {
     font-size: 3rem;
     margin-bottom: 1.5rem;
     font-family: 'Poppins', sans-serif;
+    color: #fff; /* Ensures the text is white for better contrast */
 }
 
-/* Estimate Form Section */
-.estimate-form {
-    position: relative;
-    z-index: 1; /* Bring this section above the blurred background */
+/* Thumbnail Styles */
+.thumbnail.fence {
+    background-image: url('fence-thumbnail.jpg'); /* Add the actual image path */
+    background-size: cover;
 }
 
-.estimate-form h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-family: 'Poppins', sans-serif;
+.thumbnail.deck {
+    background-image: url('deck-thumbnail.jpg'); /* Add the actual image path */
+    background-size: cover;
+}
+
+.thumbnail.patio {
+    background-image: url('patio-cover-thumbnail.jpg'); /* Add the actual image path */
+    background-size: cover;
+}
+
+.thumbnail.pergola {
+    background-image: url('pergola-thumbnail.jpg'); /* Add the actual image path */
+    background-size: cover;
 }
 
 .thumbnails {
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* Centers the thumbnails */
     gap: 1rem;
+    margin-top: 20px;         /* Adds space between the header and thumbnails */
 }
 
 .thumbnail {
     position: relative;
-    width: 150px; /* Adjust as needed */
-    height: 150px; /* Make thumbnails square */
-    background-color: rgba(255, 255, 255, 0.8); /* Background for visibility */
+    width: 200px;             /* Set width for thumbnails */
+    height: 200px;            /* Set height for thumbnails */
+    background-color: rgba(255, 255, 255, 0.3); /* Light background for visibility */
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s;
-    cursor: pointer; /* Makes the thumbnail clickable */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    cursor: pointer;          /* Makes the thumbnail clickable */
 }
 
 .thumbnail span {
-    color: white;
-    font-weight: bold;
+    color: white;             /* Text color for the thumbnail */
+    font-weight: bold;        /* Bold text */
     text-shadow: 1px 1px 2px black; /* Adds shadow to the text */
 }
 
 .thumbnail:hover {
-    opacity: 0.7; /* Dims thumbnail on hover */
+    background-color: rgba(255, 255, 255, 0.5); /* Dim on hover */
+    transform: scale(1.05);   /* Slightly enlarge on hover */
 }
+
 
 /* About Section */
 .about {
@@ -124,9 +160,8 @@ body {
 }
 
 .about p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* Services Section */
@@ -137,122 +172,99 @@ body {
 .services h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
-    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1.5rem;
 }
 
 .services-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .service-item {
-    background-color: #fff;
-    padding: 2rem;
+    background: #f4f4f4;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.service-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.service-item p {
-    font-size: 1rem;
-    color: #555;
 }
 
 /* Portfolio Section */
 .portfolio {
-    background-color: #f4f4f4;
     padding: 4rem 0;
 }
 
 .portfolio h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
-    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1.5rem;
 }
 
 .portfolio-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.portfolio-item {
-    flex: 1;
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .portfolio-item img {
-    max-width: 100%;
+    width: 100%;
     border-radius: 10px;
-}
-
-.portfolio-item p {
-    margin-top: 0.5rem;
 }
 
 /* Contact Section */
 .contact {
     padding: 4rem 0;
-    text-align: center;
+    background-color: #f4f4f4;
 }
 
 .contact h2 {
+    text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
-    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1.5rem;
 }
 
 .contact form {
+    max-width: 600px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .form-group {
     margin-bottom: 1.5rem;
-    width: 100%;
-    max-width: 400px;
 }
 
 .form-group label {
-    display: block;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.contact button {
-    padding: 0.7rem 1.5rem;
-    background-color: #232323;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.contact button:hover {
-    background-color: #f7b32b;
-}
-
 /* Footer Section */
 .footer {
+    padding: 1rem 0;
+    text-align: center;
     background-color: #232323;
     color: #fff;
-    text-align: center;
-    padding: 1rem 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .header nav ul {
+        flex-direction: column;
+        display: none; /* Initially hide menu items on mobile */
+    }
+
+    #menu-icon.active + #menu-list {
+        display: flex; /* Show menu items when hamburger is active */
+    }
+
+    .thumbnails {
+        flex-direction: column; /* Stack thumbnails vertically on mobile */
+    }
 }
