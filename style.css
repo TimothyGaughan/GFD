@@ -114,46 +114,50 @@ body {
     background-size: cover;
 }
 
+/* Thumbnails Section */
 .thumbnails {
-    display: flex;
-    flex-wrap: wrap;            /* Allow items to wrap in mobile view */
-    justify-content: center;    /* Center the thumbnails */
-    gap: 1rem;                 /* Space between thumbnails */
-    margin-top: 20px;          /* Space between the header and thumbnails */
+    display: grid;                   /* Change to grid layout */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+    gap: 1rem;                       /* Space between thumbnails */
+    margin-top: 20px;               /* Space between the header and thumbnails */
 }
 
+/* Adjust thumbnail size for mobile */
 .thumbnail {
     position: relative;
-    width: 200px;              /* Set width for thumbnails */
-    height: 200px;             /* Set height for thumbnails */
+    width: 100%;                    /* Full width for each thumbnail in the grid */
+    height: 150px;                  /* Set a height for thumbnails */
     background-color: rgba(255, 255, 255, 0.3); /* Light background for visibility */
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
-    cursor: pointer;           /* Makes the thumbnail clickable */
+    cursor: pointer;                 /* Makes the thumbnail clickable */
 }
 
-/* Add this media query to ensure thumbnails are responsive */
-@media (max-width: 768px) { /* Adjust the max-width value as needed */
+/* Media Query for Responsive Design */
+@media (min-width: 769px) {         /* For larger screens */
+    .thumbnails {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for larger screens */
+    }
+
     .thumbnail {
-        width: 150px;         /* Adjust width for mobile view */
-        height: 150px;        /* Adjust height for mobile view */
+        height: 200px;              /* Height for larger thumbnails */
     }
 }
 
-
 .thumbnail span {
-    color: white;             /* Text color for the thumbnail */
-    font-weight: bold;        /* Bold text */
+    color: white;                  /* Text color for the thumbnail */
+    font-weight: bold;             /* Bold text */
     text-shadow: 1px 1px 2px black; /* Adds shadow to the text */
 }
 
 .thumbnail:hover {
     background-color: rgba(255, 255, 255, 0.5); /* Dim on hover */
-    transform: scale(1.05);   /* Slightly enlarge on hover */
+    transform: scale(1.05);         /* Slightly enlarge on hover */
 }
+
 
 
 /* About Section */
